@@ -1,0 +1,56 @@
+## Unity Script 기본 구성 ##
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NewScriptName : Monobehaviour // NewScriptName 에 원하는 파일명 입력. 생성 직후에 스크립트 밖에서 이름변경 가능.
+{
+  void Start() // 오브젝트가 시작할 때 동작
+  {
+   
+  }
+  
+  void Update() 오브젝트가 계속해서 해야하는 동작
+  {
+  
+  }
+} 
+
+그 외에도
+FixedUpdate() // 일정시간마다 계속 동작
+OnCollisionEnter2D() // 충돌 판정 시 동작
+OnMouseDown() // 마우스 클릭 또는 터치 시 동작
+LastUpdate() // 그리기 시행 후 동작
+
+## 오브젝트 동작 코드 ##
+오브젝트 이동 시 >> this.transform.Translate(x,y,z); // 이때 x,y,z 좌표는 변수형을 float로 설정해준다.
+<코드 작성 방법>
+public float speed; // 오브젝트가 이동할 속도 지정. (public 함수로 변경 시 코드 바깥에서 임의로 지정 가능.)
+FixedUpdate() 사용 // 오브젝트가 이동할때에는 픽셀만큼 이동하기에 일정시간동안 계속해서 이동해야 함.
+this.transform.Translate(speed/50 ,0 ,0); // 오브젝트가 이동해야 할 방향으로 해당 속도 대입.
+
+오브젝트 회전 시 >> this.transform.Rotate(x,y,z); // 변수형 동일.
+코드 작성 또한 위와 동일. ( public float speed -> angle 로 변경)
+
+제자리 회전이 아닌 방향을 변경하는 회전 시
+Count를 지정하여 해당 카운트 만족 시 한번 회전하는 방식.
+<코드 작성 방법>
+public float angle; // 회전할 각도 설정
+public int MaxCount; // 회전 타이밍 카운트 설정
+int count;
+void Start()
+count = 0; // 카운트 0부터 시작
+
+void FixedUpdate()
+count += 1; // 카운트 1씩 증가
+if ( count == MaxCount) // 카운트가 끝날 때 회전 후 카운트를 다시 0으로 초기화
+this.transform.Rotate(0,0,angle);
+count = 0;
+
+오브젝트 그림 반전 시 >> this.GetComponent<SpriteRenderer>().flipX = 반전여부; // flipY로 바꾸면 X축 대칭 반전
+<코드 작성 방법>
+this.transform.Rotate(0,0,180); // 오브젝트를 180도 회전
+
+flipFlag = !flipFlag; // 오브젝트 그림이 좌우반전되므로 재반전 시켜준다
+this.GetComponent<SpriteRenderer>().flipY = flipFlag;
