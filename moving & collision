@@ -1,0 +1,34 @@
+## 충돌 판정 기능을 적용하기 위한 요소 ##
+1. 리지드바디(Rigidbody) => 오브젝트에 물리적인 움직임을 적용시키는 컴포넌트
+>> 아무리 스크립트로 물리적인 운동을 시켜도 리지드바디가 적용되지 않으면 절대 오브젝트는 움직이지 않음.
+
+2. 콜라이더(collider) => 오브젝트에 충돌을 하는 형태를 적용시키는 컴포넌트
+ >> 보통 콜라이더의 형태는 사각형, 원형, 캡슐형, 그림과 유사한 모양 등으로 설정할 수 있다.
+ 하지만 이미지를 이용하여 쓰는 경우 그림과 유사한 모양으로 설정하는 Polygon collider를 주로 많이 사용한다. 
+ (정해진 형태로 설정 할 경우 여백이 남아 충돌 판정이 이상하게 느껴짐)
+ 
+ 이렇게 오브젝트에 충돌 판정을 적용시켰을 경우 적용이 잘 되지만, 기본적으로 중력이 존재하기 때문에 충돌 시 오브젝트가 낙하하거나 회전해버리는 상황이 발생한다.
+ >> Rigidbody2D에 있는 Gravity Scale의 수치를 0으로 설정해준 후, Constraints 항목의 z축을 Freeze Rotation 해주면 된다.
+ 스크립트에서는 Rigidbody2D.gravityScale = 0; 그리고 Rigidbody2D.constraints = RigidbidyConstraints2D.FreezeRotation;
+ 
+ ## 오브젝트를 이동시키는 방법 ##
+ 앞서 사용했던 transform.Translate()는 위치를 강제적으로 이동시키기 때문에 조금 부자연스러울 수 있다.
+ >> Rigidbody2D를 적용시킨 후, Rigidbody2D.velocity =  new Vector2(vx,vy); 를 사용한다. ( 오브젝트의 벡터값을 변경 )
+ 
+ 1. 일시적으로 자동 이동
+ 어떠한 반응 없이 자동으로 움직였다가 멈추는 행동을 하려면, 오브젝트에 count를 설정하여 count를 셀 동안만 움직이게 하면 된다.
+ >> count = 0 으로 지정 후, FixedUpdate() 에서 'count == 숫자' 일 경우 this.GetComponent<Rigidbody2D>().velocity = new Vector 2 (0,0);
+ 로 속도를 멈추게 한 다음 count += 1; 로 하나씩 카운트를 늘려나간다.
+ 
+ 1-1. 좌표를 찾아 이동 (오브젝트를 쫓아가거나, 도망칠 때)
+ 카운트를 이용하여 일정 시간만큼만 이동하는 반면, 특정 오브젝트의 좌표나 다른 좌표를 찾아서 이동하는 것도 가능하다.
+ 먼저 스크립트에 GameObject형의 targetObject를 정해주고, 'targetObject = GameObject.Find(targetObjectName);' 코드로 targetObject의 위치를 찾아낸다.
+ 위치를 찾았으니 targetObject로의 방향을 구한다. >> Vector3 dir = (목표 오브젝트 좌표 - 설정 오브젝트의 좌표).normalized;
+ 그 후 이동시켜준다. >> 
+ 
+ 
+ 2. 키 입력시 이동
+ 키 입력을 받았을 때만 이동하는 행동을 적용시키려면, Input.GetKey("키이름") 으로 적용시켜주면 된다.
+ >> public float speed; 로 속도를 지정 후, Update() 함수에 'if(Input.GetKey("방향키")) , vx/vy = speed/-speed;' 로 상하좌우 이동을 설정해 주고
+ FixedUpdate() 함수에 RigidBody.velocity = new Vector2(vx,vy); 로 벡터값을 넣어준다.
+ * 키 입력으로 오브젝트를 이동시켜도 이미지는 반전되지 않는다. 그러므로 this.GetComponent<SpriteRenderer>().flipX 로 좌우반전 설정을 해주어야 한다.
