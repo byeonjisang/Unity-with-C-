@@ -24,7 +24,8 @@
  카운트를 이용하여 일정 시간만큼만 이동하는 반면, 특정 오브젝트의 좌표나 다른 좌표를 찾아서 이동하는 것도 가능하다.
  먼저 스크립트에 GameObject형의 targetObject를 정해주고, 'targetObject = GameObject.Find(targetObjectName);' 코드로 targetObject의 위치를 찾아낸다.
  위치를 찾았으니 targetObject로의 방향을 구한다. >> Vector3 dir = (목표 오브젝트 좌표 - 설정 오브젝트의 좌표).normalized;
- 그 후 이동시켜준다. >> 
+ 그 후 이동시켜준다. >> float vx/vy = dir.x/y * speed; rbody.velocity = new Vector2(vx,vy);
+ * 도망치는 행동의 경우에는 speed값들만 -speed로 적용시켜주면 된다.
  
  
  2. 키 입력시 이동
