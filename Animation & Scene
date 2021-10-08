@@ -8,10 +8,15 @@ ex) 걷거나 뛰는 움직임, 불꽃이 변하는 움직임 등
 - Animator 창을 열어 생성한 Animation들을 추가시킨다. (이를 플립북 이라고 부름)
 - 조건 충족이 애니매이션을 전환시키는 스크립트를 만든다. 
 
-ex) 키 입력 시 오브젝트 애니매이션 전환
+ex) 키 입력 시 오브젝트 애니매이션 전환 (OnKeyPress_ChangeAnime)
 >> this.GetComponent<Animator>().Play(AnimationName); // AnimationName을 재생
 1. public string 으로 키 입력별 전환하는 애니매이션 지정 및 해당 애니매이션을 지정할 변수이름 설정한다. (string nowAnime="";) 
 2. Start() 함수에 처음 표시할 애니매이션을 지정한다. (nowAnime = dirAnime);
 3. Update() 함수를 사용해서 Input.GetKey로 각 키를 입력할 때 전환할 애니매이션을 입력시킨다. ( if(Input.GetKey("") > nowAnime = dirAnime;)
 4. FixedUpdate() 함수에 입력 시킨 애니매이션을 재생시킨다. (this.GetComponent<Animator>().Play(nowAnime));
+
+## Scene 조정하기 ##
+Scene이란? >> 프로젝트 안에 있는 화면 하나하나를 일컫는 말이다. (하나의 프로젝트 -> 여러개의 Scene)
+
+
 
