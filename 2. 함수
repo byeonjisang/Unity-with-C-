@@ -1,0 +1,38 @@
+## 함수 ##
+함수란, 일종의 코드의 그릇이라고 보면 된다. 다양한 식들이나 코드 등을 입력시키는 곳을 뜻한다.
+ex) int Value; 와 long Value2; 처럼 변수를 생성시켜주고, long sum;의 값을 출력하고 싶을 때, print(sum); 을 이용하게 되는데,
+이 코드를 실행시키기 위해 입력하는 그릇을 함수라고 한다. -> void ValueSum()
+- void란 빈, 공허한 이라는 의미로 비어있는 그릇을 의미한다(반환값 x). 그래서 함수를 생성할때 void FunctionName() 처럼 생성하면 하나의 함수가 완성된다.
+>> 함수이름을 지정할 때, 되도록 영어로 표기하며, 가시성이 좋은 이름으로 선택하는 것이 좋다. 또한, 첫 글자는 대문자로 설정하는 것을 추천한다.
+* 함수는 또 다른 함수 안에서 호출이 가능하다. -> void ValueSum() 에 들어있는 print(sum); 을 void Start() 안에 호출 시켜 출력이 가능하다.
+
+또한, 변수가 여러 개 존재 할 경우, 함수 안에 별개의 변수를 지정하여 대입이 가능하다. (이는, 함수를 여러 개 생성할 필요가 없다는 뜻이다)
+ex) int Value=10; float Value2=20.5f; float Value3=30.5f; 일 때, float형 변수들을 int형으로 변환 후 출력시킬 때
+>> void SumValue( float parameter ) 처럼 괄호안에 입력받을 변수를 설정 후, 형 변환코드를 입력. -> Value = (int)parameter;
+>> 그 후에 또 다른 함수 void Start() 안에 함수를 호출하여 출력한다. -> SumValue(Value2); SumValue(Value3);
+* 함수 내의 변수 자료형과 바깥 변수 자료형이 서로 같아야 입력 받을 수 있다.
+>> 20 과 30 이 출력될 것이다.
+void sumValue( float parameter, float parameter2) 처럼 함수 내에서도 여러개의 변수생성이 가능하며, 이를 이용해 연산도 가능하다.
+>> Value=(int)(parameter + parameter2); print(intValue); // 연산 식 생성 후
+>> void Start() 안에서 SumValue(Value2,Value3); // 함수 호출
+20.5+30.5 인 51이 출력된다.
+* 외부에서 생성된 변수 말고도 함수 호출에서 직접 값을 입력하여 호출도 가능하다.
+
+void라는 것은 반환값이 없는 형태의 함수라고 했는데, 이를 자료형으로 바꾸어서 반환값을 생성시킬 수 있다.
+>> void SumValue() -> int SumValue() 로 변경하면 이 함수의 반환값은 정수형이라는 뜻이다.
+반환값을 생성시켜주기 위해서는 return 을 사용하면 된다. return 에는 식이나 특정한 값이 들어와도 무관하다. -> return 4; , return (int)(parameter + parameter2);
+* return 앞이나 뒤에 어떤 식이나 값이 들어온다고 해도 함수결과는 무조건 반환값으로 출력된다(다른 함수에 호출 시). 함수 자료형과 반환값 자료형은 같아야 한다.
+ex) int SumValue(float parameter, float parameter2) 
+{
+ intValue=(int)(parameter + parameter2); 
+ print(intValue); 
+ return 4;
+} // 호출 시 반환값은 무조건 4 
+
+void Start()
+{ 
+  intValue=(SumValue(Value2,Value3)); 
+  print(intValue); 
+}
+
+>> Sumvalue 에서는 51, Start에서는 반환되는 값인 4가 출력된다.
