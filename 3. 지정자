@@ -1,0 +1,57 @@
+public class Test1 : MonoBehavior
+{
+  int a = 1; 
+  // 이처럼 함수 내에 있지 않고 클래스 안에서 선언한 변수를 전역 변수라고 한다. 이는 어떤 함수에서든 변수로 지정해 사용이 가능하다.
+  
+  void Function()
+ { 
+   int b = 2; // 함수 내에서 선언된 변수를 지역 변수라고 한다. 이 변수는 선언한 함수 내에서만 적용 가능하다.
+ }  
+ 
+ void Start()
+ { 
+   print(b);
+ } 
+ 
+}  
+>> 오류 발생 ( b는 지역 변수 선언인데 다른 함수에서 출력을 시도했으므로 ) -> Start 함수에 똑같이 int b = 2; 선언해주면 된다.
+* 전역 변수와 지역 변수가 이름이 같을 때에는, 지역 변수를 우선으로 하기 때문에 전역 변수는 무시된다.
+
+
+public class Test3 : MonoBehavior 
+{
+  private int a = 1; // private는 선언한 클래스 내에서만 가져갈 수 있게 막아놓는다.
+  public int b = 2; // public은 반대로 다른 모든 클래스에서 가져가 사용할 수 있게 한다.
+  public static c; // static은 공유자원 이라는 뜻이다. 변수를 서로 공유한다. 이를 정적 변수라고도 한다. (자세한 설명 아래 참조 47)
+  >> 변수 뿐만 아니라 함수도 똑같이 사용이 가능하다. -> public void Function() , private void Function2()
+}  
+
+public class Test2
+{
+  Test3 aa = new Test3(); // * 클래스 타입을 변수로 지정할때는 무조건 new 함수로 클래스를 할당시켜야함!!! *
+  Test3 aa3 = new Test3(); 
+  Test3 aa4 = new Test3();
+  
+  
+  void Start()
+ { 
+   Abc();
+ }
+ 
+  void Abc()
+ {
+   aa.a=1; // 이때, a는 private 변수이기 때문에 오류가 생긴다. b는 public 변수이기 때문에 정상적으로 작동한다.
+   aa.Function(); // 함수를 가져올 때 이렇게 사용
+   aa.b = 2; // public 변수인 b는 각각 다른 클래스 변수에 다른 값을 집어넣어 구분이 가능하다.
+   aa3.b = 3; 그래서 클래스형 변수가 증가할때 마다 b의 갯수도 증가함.
+   aa4.b = 4;
+   Test3.c = 10; // 하지만 public static 변수인 c는 공유자원이기 때문에 변수가 아닌 클래스 자체를 참조하기 때문에 하나만 존재하고,
+   c의 값을 변경할 경우 모든 클래스 변수의 값도 동일하게 바뀐다. -> c = 10 일 때, aa/aa3/aa4 의 c값 전부 10으로 동일.
+   
+   print(aa.b); // 할당한 클래스 변수를 출력 -> 2
+   print(aa3.b); // 3
+   print(aa4.b); // 4
+   print(Test3.c); // 10 ( Test3 로 할당한 클래스 변수의 모든 c값이 동일 )
+ } 
+} 
+  
