@@ -9,8 +9,45 @@
  
  void Start()
  {
-   for(int i = 0; i < 10; i++) // for 구문 안에는 반복횟수와, 반복간격을 작성한다. 
+   for(int i = 0; i < 10; i++) // for 구문 안에는 반복횟수와, 반복간격을 작성한다. 하지만 무조건 구문 안에 적을 필요 없이 밖에서도 선언이 가능하다.
   {
-    num = i;
-    print(num);
+    if( i % 2 == 1)
+      continue; // continue 구문은 반복문 자체가 아닌 회차를 끝내고 다시 처음으로 돌아갈 때 사용한다.
+    >> 이 구문의 경우 나머지가 1일때 회차 끝, 다시 반복문 시작 -> 짝수만 출력하게 된다.
+      
+    print(i);  
   } 
+   for(;;) // 해당 for 구문과 위의 구문은 동일한 값을 출력한다.
+  { 
+    if(num < 20)
+      break; // break 문은 현재의 반복문 자체를 빠져나가고 싶을때 사용하면 된다.
+    print(num);
+    num++;
+ } 
+ 
+ ## while / do-while 반복문 ##
+ while 반복문 또한 많이 사용되는 구문 중 하나이다.
+ >> 사용방법은 for와 동일하지만, 보통 for는 반복횟수가 명확할 때, while은 반복횟수가 정확하지 않을때 쓴다.
+ 
+ ex)
+ 
+ int num = 0;
+ int sum;
+ 
+ void Start()
+{
+   while(true) // while 구문안에 true를 넣을 경우 무한으로 반복 즉, 무한루프가 실행된다.
+  {
+    if( num < 10 ) // 무한루프를 멈추려면 for와 동일하게 true자리나 구문 밑에 조건을 달아서 실행시켜주면 된다.
+      break;
+    print(num);
+  }
+  // do-while과 while의 차이는 처음을 무조건 실행 후 반복하느냐, 처음부터 반복하느냐의 차이다.
+   do 
+  {
+    num++; // do 구문에서 무조건 num을 1 증가시킨 다음 출력 후, while문으로 넘어간다. 하지만 그냥 while은 그렇지 않다.
+    print(num);
+  } while (num<=10)
+       sum += num;
+       print(sum);
+} 
