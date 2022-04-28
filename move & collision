@@ -33,3 +33,29 @@
  >> public float speed; 로 속도를 지정 후, Update() 함수에 'if(Input.GetKey("방향키")) , vx/vy = speed/-speed;' 로 상하좌우 이동을 설정해 주고
  FixedUpdate() 함수에 RigidBody.velocity = new Vector2(vx,vy); 로 벡터값을 넣어준다.
  * 키 입력으로 오브젝트를 이동시켜도 이미지는 반전되지 않는다. 그러므로 this.GetComponent<SpriteRenderer>().flipX 로 좌우반전 설정을 해주어야 한다.
+ 
+ 2-1. 직선으로 이동하기
+ 1) MoveTowards
+ 매개변수 - 위치, 목표, 이동속도
+ => transform.position = Vector3.MoveTowards(transform.position, target, 2f); 
+ 
+ 2) SmoothDamp
+ 매개변수 - 위치, 목표위치, 참조 속도, 속도 
+ # 참조속도는 잘 활용되지 않으므로 0으로 초기화.
+ Vector3 velo = Vector3.zero;
+=> transform.position = Vector3.SmoothDamp(transform.position, target, ref velo, 2f
+
+3) Lerp (선형보간이동)
+=> transform.position = Vector3.Lerp(transform.position, target, 1f);
+
+4) SLerp(구면선형보간이동)
+=> transform.position = Vector3.Slerp(transform.position, target, 2f); 
+
+!! 중요 !!
+-> Time.deltaTime 사용하기
+deltaTime이란? 프레임이 적으면 값이 커지고, 프레임이 많으면 값이 작아진다.
+1) Translate: 벡터에 곱해주면 된다.
+ex) transform.Translate(Vector * Time.deltaTime);
+
+2) Vector: 시간 매개변수에 곱하기
+ex) Vector3.Lerp(Vec1, Vec2, T * Time.deltaTime);
