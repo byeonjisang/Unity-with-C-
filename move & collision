@@ -59,3 +59,8 @@ ex) transform.Translate(Vector * Time.deltaTime);
 
 2) Vector: 시간 매개변수에 곱하기
 ex) Vector3.Lerp(Vec1, Vec2, T * Time.deltaTime);
+
+2-2 회전 및 방향전환
+
+1) 회전하기: Rotate() 함수 사용
+=> transform.Rotate(angle);
