@@ -68,7 +68,7 @@ ex) Vector3.Lerp(Vec1, Vec2, T * Time.deltaTime);
 ex) float angle = 90;
     void FixedUpdate()
    {
-     this.transform.Rotate(0, 0, angle/50);
+     this.transform.Rotate(0, 0, angle/50); // 지정한 각도를 50프레임에 나누어 회전한다
    }  
     
    
@@ -80,7 +80,7 @@ ex) int count = 0;
     
     void FixedUpdate()
    {
-      this.transform.Translate
+      this.transform.Translate(1,0,0) // 물체가 조금씩 이동한다
       count += 1; // 카운트를 센다
       if(count >= Maxcount) // 카운트가 꽉 차면
      {
@@ -88,7 +88,9 @@ ex) int count = 0;
        count = 0; // 카운트를 초기화
      }
    }
-    
+   
+3) 좌우 방향전환 => 회전이 아닌 물체의 좌우만 바껴 회전한다.
+flipX 이용 => SpriteRenderer.flipX = true; // 해당 오브젝트가 X 축 기준으로 반전된다
 
 
 
