@@ -117,7 +117,7 @@ Ex) if(Input.GetKey('a') // a키를 입력 받았을 시
   
   
 # 키를 입룍 받을 때는 (KeyCode.Space) 와 같이 KeyCode를 이용하여 불러주어도 괜찮다.
-,ㅟㅠ 르ㅕㅐㅑ 
+
   
   
   
