@@ -118,17 +118,32 @@ Ex) if(Input.GetKey('a') // a키를 입력 받았을 시
   
 # 키를 입룍 받을 때는 (KeyCode.Space) 와 같이 KeyCode를 이용하여 불러주어도 괜찮다.
 
+3-1 충돌판정 설정
+
+=> 오브젝트 간의 충돌판정을 지정해 주는 함수는 총 2가지가 있다.
+
+1) OnCollisionEnter2D(Collision2D collision)
+-> 해당 함수는 충돌이 일어났을 시 실행시키는 함수이다.
+-> 인자는 충돌하는 오브젝트의 Collision2D를 지정하는 변수이다.
+
+Ex) void CollisionEnter2D( Collision2D collision ) // 충돌 함수 설정
+  {
+     if(collision.gameObject.tag == "enemy") // enemy라는 이름의 적과 충돌 시
+   {
+     this.transform.Rotate(0, 0, angle/50); // 한번 회전한다
+   }
+  }
   
+2) OnTriggerEnter2D( Collision2D collision )
+-> 해당 함수는 충돌 시에 물리적인 힘을 받아 멈추거나 뒤로 밀리는 것이 아닌
+   충돌한 오브젝트가 바로 사라질때 실행되는 함수이다. ( 유니티 엔진 내에서 is Trigger라는 기능을 체크 시에 실행 )
+Ex) 
+  public gameObject hideObject; 
+  void OnTriggerEnter2D (Collision2D collision) // 트리거 충돌 함수 생성
+{
+  if(collision.gameObject.layer == "1") // 1번 레이어랑 충돌했을 경우
+ {
+   hideObject.SetActive(false); // hideObject를 사라지게 한다
+ }  
+}     
   
-  
-  
-  
-
-
-
-
-
-
-
-
-
