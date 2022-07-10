@@ -31,8 +31,54 @@ ex) int SumValue(float parameter, float parameter2)
 
 void Start()
 { 
-  intValue=(SumValue(Value2,Value3)); 
+  intValue = (SumValue(Value2,Value3)); 
   print(intValue); 
 }
 
 >> Sumvalue 에서는 51, Start에서는 반환되는 값인 4가 출력된다.
+
+## 함수 응용 ##
+=> 플레이어가 포션을 획득하면 10의 체력을 회복하고 체력이 0 이하인 경우 죽는 상황
+
+  public int Myhp = 100; // 현재체력 지정
+  
+  void Update()
+{
+    if(Myhp =< 0) // 현재체력이 0 이하라면
+  {
+    Die(); // Die 함수 실행
+  }  
+}
+
+
+  void OnTriggerEnter2D(Collision2D collision) // 충돌 함수 생성
+{
+    if(collision.gameObject.tag == "potion") // potion이라는 오브젝트랑 충돌했을 때
+  {
+     Heal(); // Heal이라는 함수 실행
+  }  
+}
+
+  void Heal()
+{
+    Myhp += 10; // 체력 10 회복
+    Debug.Log("체력회복 성공"); // 회복 성공 메세지 출력
+} 
+
+  void Die()
+{
+  gameObject.SetActive(false); // 오브젝트 비활성화
+  Debug.Log("게임 오버"); // 게임 종료 메세지 
+}  
+  
+
+
+
+
+
+
+
+
+
+
+
