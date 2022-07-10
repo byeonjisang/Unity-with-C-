@@ -72,5 +72,19 @@ Debug.Log(monsters[1]); // 1번째 주소의 몬스터 변수 출력
 
 
 ▶ 리스트: 기능이 추가된 가변형 그룹형 변수라고 생각하면 된다.
+=> List<자료형> 변수명 = new List<자료형>();
+   변수명.Add(데이터);
+   변수명.RemoveAt(숫자);
 
+Ex)
+List<string> items = new List<string>(); // items라는 string형 리스트를 생성
+items.Add("검"); // 0번째 리스트에 추가
+items.Add("방패"); // 1번째 리스트에 추가
+
+Debug.Log("보유 아이템");
+Debug.Log(items[0]); // 검 출력
+Debug.Log(items[1]); // 방패 출력
+
+items.RemoveAt(0); // 0번째 리스트를 삭제
+items.RemoveAt(1); // 1번째 리스트를 삭제
 
