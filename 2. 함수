@@ -40,7 +40,7 @@ void Start()
 ## 함수 응용 ##
 => 플레이어가 포션을 획득하면 10의 체력을 회복하고 체력이 0 이하인 경우 죽는 상황
 
-  public int Myhp = 100; // 현재체력 지정
+  public int Myhp = 100; // 현재체력 지정 (전역변수)
   
   void Update()
 {
@@ -56,6 +56,12 @@ void Start()
     if(collision.gameObject.tag == "potion") // potion이라는 오브젝트랑 충돌했을 때
   {
      Heal(); // Heal이라는 함수 실행
+  }
+  
+  
+    if(collision.gameObject.tag == "Monster") // Monster이라는 오브젝트랑 충돌했을 때
+  {
+     Damaged(); // Damaged라는 함수 실행
   }  
 }
 
@@ -65,12 +71,25 @@ void Start()
     Debug.Log("체력회복 성공"); // 회복 성공 메세지 출력
 } 
 
+void Damaged()
+{
+    int MonsterDmg = 5; // 몬스터의 공격력을 지정 (지역변수)
+    Myhp -= MonsterDmg; // 체력 5 감소
+    Debug.Log("적에게 데미지 입음"); // 피격 메세지 출력
+} 
+
+
+
   void Die()
 {
   gameObject.SetActive(false); // 오브젝트 비활성화
   Debug.Log("게임 오버"); // 게임 종료 메세지 
 }  
-  
+
+
+★ 지역변수 & 전역변수란?
+지역변수: 지역변수란 특정 함수 내에서 선언하여 사용할 수 있는 변수로, 타 함수에서는 접근이 불가능하다.
+전역변수: 전역변수란 스크립트 맨 처음 선언한 변수로, 모든 함수 내에서 접근이 가능하다.
 
 
 
