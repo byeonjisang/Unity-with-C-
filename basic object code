@@ -1,4 +1,5 @@
 ## Unity Script 기본 구성 ##
+=> 유니티에서 일어나는 동작들은 보통 초기화 -> 물리연산 -> 게임로직 -> 해체 순으로 진행된다.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,22 +7,37 @@ using UnityEngine;
 
 public class NewScriptName : Monobehaviour // NewScriptName 에 원하는 파일명 입력. 생성 직후에 스크립트 밖에서 이름변경 가능.
 {
-  void Start() // 오브젝트가 시작할 때 동작
+    void Awake() // 스크립트가 실행되기 전 최초로 시작되는 함수
+  {
+  
+  }
+  
+    void OnEnable() // 오브젝트가 활성화 시 동작
+  {
+  
+  }
+    void Start() // 오브젝트가 시작할 때 동작
   {
    
   }
   
-  void Update() 오브젝트가 계속해서 해야하는 동작
+    void Update() // 오브젝트가 계속해서 해야하는 동작 (게임 로직이 업데이트된다)
+  {
+  
+  }
+  
+    void OnDisable() // 오브젝트 비활성화 시 동작
   {
   
   }
 } 
 
 그 외에도
-FixedUpdate() // 일정시간마다 계속 동작
+FixedUpdate() // 물리 연산을 실행하기 전에 실행되는 함수 (실행 주기가 고정)
 OnCollisionEnter2D() // 충돌 판정 시 동작
 OnMouseDown() // 마우스 클릭 또는 터치 시 동작
-LastUpdate() // 그리기 시행 후 동작
+LastUpdate() // 업데이트 함수들이 실행된 후에 동작
+OnDestroy() // 데이터가 파괴되었을 경우 동작
 
 ## 오브젝트 동작 코드 ##
 오브젝트 이동 시 >> this.transform.Translate(x,y,z); // 이때 x,y,z 좌표는 변수형을 float로 설정해준다.
