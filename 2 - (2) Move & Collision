@@ -90,7 +90,9 @@ ex) int count = 0;
    }
    
 3) 좌우 방향전환 => 회전이 아닌 물체의 좌우만 바껴 회전한다.
-flipX 이용 => SpriteRenderer.flipX = true; // 해당 오브젝트가 X 축 기준으로 반전된다
+flipX 이용 => SpriteRenderer.flipX = true; // 해당 오브젝트가 X 축 기준으로 반전된다.
+
+
 
 3-1 충돌판정 설정
 
