@@ -1,23 +1,12 @@
  ## 마우스 클릭 판정 ##
 마우스 클릭 시 행동은 OnMouseBtnDown() 이나 OnMouseBtnUp() 함수를 사용한다.
-OnMouseBtnDown() >> 마우스가 클릭한 시점을 기준 OnMouseBtnUp() >> 마우스를 클릭 후 뗀 시점을 기준
+OnMouseBtnDown() >> 마우스가 클릭한 시점을 기준 
+OnMouseBtnUp() >> 마우스를 클릭 후 뗀 시점을 기준
+
 ex) 마우스 클릭 시 오브젝트가 회전하는 방법 >> float angle, float Rotateangle 로 각도 지정 후 OnMouseBtnDown() 함수에서 클릭 했을 때
 angle = Rotateangle 로 회전 각도 설정한 다음 FixedUpdate() this.transform.Rotate(0,0, Rotateangle/50); 으로 회전시킨다.
 * 이를 이용하여 돌림판 제작이 가능하다. 단, 돌림판은 돌아가면서 서서히 멈추어야 하기 때문에 FixedUpdate() 함수에서 Rotateangle =  Rotateangle * 0.98f;
 즉, 돌아가는 각도에 지속해서 1보다 작은 양수를 곱해주어야 멈추어간다.
-
-## 오브젝트의 중첩 ##
-가끔 여러개의 옵젝들을 같은 좌표에 배치해야되는 경우가 생기는데, 그랬을 때 생기는 중첩 지정 방법이 3가지 있다.
-1. Sorting Layer 
-이는 가장 강력하게 중첩을 설정할 수 있는 방법이다. 레이어들의 이름도 변경이 가능하여 가시성이 좋다.
-위쪽에 위치한 레이어일수록 제일 뒤에 배치된다.
-
-2. Order in Layer
-중첩 내에서 수치(숫자)로 깊이를 지정하는 방법이다. 값이 클수록 앞쪽, 작을수록 뒤쪽에 배치된다.
-
-3. Position Z
-말 그대로 z좌표를 이용하는 방법이다. 2D에서는 카메라가 앞쪽에서 오브젝트를 보는 상태이므로 z축의 값이 클수록 뒤에 있는 것처럼 보이게 된다.
-* 이 방법은 Order in Layer에서 서로 값이 같은 상태에서도 순서 지정이 가능하다.
 
 ## 키 입력시 이동 및 전환 ##
 
@@ -37,10 +26,14 @@ Ex) if(Input.GetKey('a') // a키를 입력 받았을 시
 사용방법은 위와 동일하다.
 
 # GetKey와 GetKeyDown의 차이점
-= GetKey함수는 키보드를 한번 누르게 되면 해당 값을 계속 받는 함수이지만, GetKeyDown 함수는 키보드가 한번 눌러진 그 순간만 값을 받는다.
+=>> GetKey함수는 키보드를 한번 누르게 되면 해당 값을 계속 받는 함수이지만, GetKeyDown 함수는 키보드가 한번 눌러진 그 순간만 값을 받는다.
 
 3) Input.GetKeyUp()
 => 2)와는 반대로 키보드를 눌렀다가 땠을때만 실행되는 함수이다.
   
   
 # 키를 입룍 받을 때는 (KeyCode.Space) 와 같이 KeyCode를 이용하여 불러주어도 괜찮다.
+
+4) anyKeyDown
+=> 말 그대로 어떤 키를 입력해도 발생하는 함수이다.
+GetKeyDown과 같이 키를 누른 그 순간만 발생하며, 꾹 누르거나 손을 뗄 경우 발생하지 않는다.
