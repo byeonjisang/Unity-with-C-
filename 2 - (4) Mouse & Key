@@ -1,13 +1,3 @@
- ## 마우스 클릭 판정 ##
-마우스 클릭 시 행동은 OnMouseBtnDown() 이나 OnMouseBtnUp() 함수를 사용한다.
-OnMouseBtnDown() >> 마우스가 클릭한 시점을 기준 
-OnMouseBtnUp() >> 마우스를 클릭 후 뗀 시점을 기준
-
-ex) 마우스 클릭 시 오브젝트가 회전하는 방법 >> float angle, float Rotateangle 로 각도 지정 후 OnMouseBtnDown() 함수에서 클릭 했을 때
-angle = Rotateangle 로 회전 각도 설정한 다음 FixedUpdate() this.transform.Rotate(0,0, Rotateangle/50); 으로 회전시킨다.
-* 이를 이용하여 돌림판 제작이 가능하다. 단, 돌림판은 돌아가면서 서서히 멈추어야 하기 때문에 FixedUpdate() 함수에서 Rotateangle =  Rotateangle * 0.98f;
-즉, 돌아가는 각도에 지속해서 1보다 작은 양수를 곱해주어야 멈추어간다.
-
 ## 키 입력시 이동 및 전환 ##
 
 게임 내의 이동 중에서 기본적으로 플레이어가 키보드를 입력 받았을 때 움직이는 경우를 자주 볼 수 있다.
@@ -37,3 +27,15 @@ Ex) if(Input.GetKey('a') // a키를 입력 받았을 시
 4) anyKeyDown
 => 말 그대로 어떤 키를 입력해도 발생하는 함수이다.
 GetKeyDown과 같이 키를 누른 그 순간만 발생하며, 꾹 누르거나 손을 뗄 경우 발생하지 않는다.
+
+ ## 마우스 클릭 판정 ##
+마우스 클릭 시 행동은 키 입력과 거의 동일하게 사용한다.
+GetMouseButton >> 마우스를 클릭하는 동안 계속 발생
+GetMouseButtonDown() >> 마우스를 눌렀을 때 발생
+GetMouseButtonUp() >> 마우스를 뗐을 때 발생
+=> 괄호 안에는 0 또는 1을 넣는데, 1은 우클릭 0은 좌클릭을 의미한다.
+
+ex) 마우스 클릭 시 오브젝트가 회전하는 방법 >> float angle, float Rotateangle 로 각도 지정 후 OnMouseBtnDown() 함수에서 클릭 했을 때
+angle = Rotateangle 로 회전 각도 설정한 다음 FixedUpdate() this.transform.Rotate(0,0, Rotateangle/50); 으로 회전시킨다.
+* 이를 이용하여 돌림판 제작이 가능하다. 단, 돌림판은 돌아가면서 서서히 멈추어야 하기 때문에 FixedUpdate() 함수에서 Rotateangle =  Rotateangle * 0.98f;
+즉, 돌아가는 각도에 지속해서 1보다 작은 양수를 곱해주어야 멈추어간다.
