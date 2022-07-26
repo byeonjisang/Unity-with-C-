@@ -35,34 +35,34 @@
  * 키 입력으로 오브젝트를 이동시켜도 이미지는 반전되지 않는다. 그러므로 this.GetComponent<SpriteRenderer>().flipX 로 좌우반전 설정을 해주어야 한다.
  
  2-1. 직선으로 이동하기
- 1) MoveTowards
+▶ MoveTowards
  매개변수 - 위치, 목표, 이동속도
  => transform.position = Vector3.MoveTowards(transform.position, target, 2f); 
  
- 2) SmoothDamp
+▶ SmoothDamp
  매개변수 - 위치, 목표위치, 참조 속도, 속도 
  # 참조속도는 잘 활용되지 않으므로 0으로 초기화.
  Vector3 velo = Vector3.zero;
 => transform.position = Vector3.SmoothDamp(transform.position, target, ref velo, 2f
 
-3) Lerp (선형보간이동)
+▶ Lerp (선형보간이동)
 => transform.position = Vector3.Lerp(transform.position, target, 1f);
 
-4) SLerp(구면선형보간이동)
+▶ SLerp(구면선형보간이동)
 => transform.position = Vector3.Slerp(transform.position, target, 2f); 
 
 !! 중요 !!
 -> Time.deltaTime 사용하기
 deltaTime이란? 프레임이 적으면 값이 커지고, 프레임이 많으면 값이 작아진다.
-1) Translate: 벡터에 곱해주면 된다.
+▶ Translate: 벡터에 곱해주면 된다.
 ex) transform.Translate(Vector * Time.deltaTime);
 
-2) Vector: 시간 매개변수에 곱하기
+▶ Vector: 시간 매개변수에 곱하기
 ex) Vector3.Lerp(Vec1, Vec2, T * Time.deltaTime);
 
 2-2 회전 및 방향전환
 
-1) 회전하기: Rotate() 함수 사용 => 물체 자체가 회전한다.
+▶ 회전하기: Rotate() 함수 사용 => 물체 자체가 회전한다.
 => transform.Rotate(x,y,z); // 각각의 축을 기준으로 회전시킨다는 의미이다. (평균적으로는 z축을 기준으로 회전시켜야 보임)
 
 ex) float angle = 90;
@@ -72,7 +72,7 @@ ex) float angle = 90;
    }  
     
    
-2) 방향전환 회전 => 물체가 나아가는 방향이 바뀐다
+▶ 방향전환 회전 => 물체가 나아가는 방향이 바뀐다
 
 ex) int count = 0;
     float angle = 90;
@@ -89,7 +89,7 @@ ex) int count = 0;
      }
    }
    
-3) 좌우 방향전환 => 회전이 아닌 물체의 좌우만 바껴 회전한다.
+▶ 좌우 방향전환 => 회전이 아닌 물체의 좌우만 바껴 회전한다.
 flipX 이용 => SpriteRenderer.flipX = true; // 해당 오브젝트가 X 축 기준으로 반전된다.
 
 
@@ -110,7 +110,7 @@ flipX 이용 => SpriteRenderer.flipX = true; // 해당 오브젝트가 X 축 기
  
 => 오브젝트 간의 충돌판정을 지정해 주는 함수는 총 2가지가 있다.
 
-1) OnCollisionEnter2D(Collision2D collision)
+▶ OnCollisionEnter2D(Collision2D collision)
 -> 해당 함수는 충돌이 일어났을 시 실행시키는 함수이다.
 -> 인자는 충돌하는 오브젝트의 Collision2D를 지정하는 변수이다.
 
@@ -122,7 +122,7 @@ Ex) void CollisionEnter2D( Collision2D collision ) // 충돌 함수 설정
    }
   }
   
-2) OnTriggerEnter2D( Collision2D collision )
+▶ OnTriggerEnter2D( Collision2D collision )
 -> 해당 함수는 충돌 시에 물리적인 힘을 받아 멈추거나 뒤로 밀리는 것이 아닌
    충돌한 오브젝트가 바로 사라질때 실행되는 함수이다. ( 유니티 엔진 내에서 is Trigger라는 기능을 체크 시에 실행 )
 Ex) 
