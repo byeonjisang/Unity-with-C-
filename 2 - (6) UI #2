@@ -1,0 +1,30 @@
+▶ Light
+
+=> 3D의 경우, 오브젝트들을 입체적으로 표현하기 위하여 Light라는 기능을 사용한다.
+   말그대로 광원을 뜻하며, 빛을 통해 물체에 그림자가 생기거나 명암을 만들어주는 역할을 한다.
+   
+=> 위치나 크기를 조정할 수 있으며, 빛의 세기또한 조절하여 어둡게 만들 수도 있다.
+
+▶ Audio
+
+=> 게임에 BGM이나 효과음을 만들기 위해 꼭 필요한 UI이다.
+   Audio Source라는 컴포넌트를 사용하여 보이지않는 스피커를 띄워 게임 실행 시 바로 실행되거나 
+   특별한 상황일 때 자유롭게 재생시킬 수 있다.
+ - Audio Source : 오디오를 재생하는 컴포넌트
+ - Audio Clip : 재생할 파일을 저장해놓는 컴포넌트
+ 
+ # Audio Clip에 음악파일이 들어있지 않을경우, Audio Source에서 재생되지 않는다.
+   
+Ex)   
+   AudioSource source; // 오디오 파일 재생 객체 생성
+
+   public AudioClip AudioJump; // 오디오 파일 저장 객체 생성
+   
+    void Sound(string action) // 득정 상황에 소리를 내는 함수
+   {
+        switch (action)
+        {
+            case "JUMP": // 점프했을 경우
+                source.clip = AudioJump; // 오디오 저장 파일을 재생파일에 저장하며 오디오 실행
+                break; // 종료
+   }           
