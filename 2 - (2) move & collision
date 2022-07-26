@@ -94,6 +94,18 @@ flipX 이용 => SpriteRenderer.flipX = true; // 해당 오브젝트가 X 축 기
 
 3-1 충돌판정 설정
 
+## 게임을 정지시킬때 ##
+ 오브젝트들의 행동 전체를 중지시키고 싶을 때에는 Time.timeScale 을 이용하여 정지시키거나 재생시킬 수 있다. ( 정지일때는 0, 재생일때는 1)
+ Collision2D 함수나 OnMouseButton 등 버튼함수에도 사용이 가능하다.
+ * 시간을 정지시키는 함수를 코딩하려면 Start() 함수에 Time.timeScale = 1; 로 시간을 움직여야 한다. (시간이 처음부터 정지되어버림)
+ 
+ ## 오브젝트 지움 및 표시할 때 ##
+ 오브젝트를 지우거나 표시할 경우에는 GameObject.SetActive(false/true); 를 사용하면 된다.
+ 보통 오브젝트끼리 충돌 시에 많이 사용하는 코드이다.
+ >> targetObejctName 과 hide/showObjectName 변수를 지정하고 CollisionEnter2D 함수에서 if(collision.gmaeObject.name == targetObjectName) 일 때
+ GameObject hide/showObject = GameObject.Find(hide/showObject); 로 지우거나 표시할 오브젝트를 찾은 후
+ hide/showObject.SetActive(false/true); 로 해당 오브젝트를 지우거나 표시한다.
+ 
 => 오브젝트 간의 충돌판정을 지정해 주는 함수는 총 2가지가 있다.
 
 1) OnCollisionEnter2D(Collision2D collision)
@@ -120,4 +132,46 @@ Ex)
    hideObject.SetActive(false); // hideObject를 사라지게 한다
  }  
 }     
-  
+
+
+ !! 충돌 시에 오브젝트를 표시하는 OnCollision_show 같은 경우에는 일대일 대응으로만 가능하게 짜여진다. 이 코드로 여러개를 입력 시 버그가 발생한다.
+ 그러므로 다수를 대응할 수 있는 OnMultiCollision 코드를 따로 작성해주어야 한다.
+ 
+ <OnMultiCollision_show 코드>
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class OnMultiCollision_Show : MonoBehaviour
+{
+    public string targetObjectName; //  목표 오브젝트 설정
+    public string showObjectName; // 보여줄 오브젝트 설정
+
+    GameObject showObject;
+    float orgY = 0;
+    float ofsetY = 10000; // showObjectName에 이 좌표값을 더해 지운다
+    void Start()
+    {
+        showObject = GameObject.Find(showObjectName); // 대상 오브젝트를 찾아서
+        orgY = showObject.transform.position.y;
+        if (orgY > ofsetY)
+        {
+            orgY -= ofsetY;// 숨긴다
+        }
+        Vector3 pos = showObject.transform.position; // showObject에 좌표값을 더해 지운다
+        pos.y = orgY + ofsetY;
+        showObject.transform.position = pos;
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == targetObjectName)  // 목표 오브젝트와 충돌 시
+        {
+            Vector3 pos = showObject.transform.position;
+            pos.y = orgY; // 목표오브젝트 좌표에 삽입
+            showObject.transform.position = pos;// 대상 오브젝트 생성
+        }
+        
+    }
+}
+
