@@ -97,3 +97,5 @@ Ex) Player 라는 이름으로 상하좌우 이동을 입력받는 키를 설정
      Debug.Log("점프하였습니다.");
    }  
 
+
+![image](https://user-images.githubusercontent.com/88876351/180962594-e825cbb0-8074-4b96-8053-fdc8031acdc9.png)
