@@ -2,7 +2,7 @@
 
 게임 내의 이동 중에서 기본적으로 플레이어가 키보드를 입력 받았을 때 움직이는 경우를 자주 볼 수 있다.
 
-1) Input.GetKey()
+▶ Input.GetKey()
 => 해당 함수는 키보드가 입력 받는 즉시 실행되는 함수이다.
 Ex) if(Input.GetKey('a') // a키를 입력 받았을 시
   {
@@ -11,20 +11,20 @@ Ex) if(Input.GetKey('a') // a키를 입력 받았을 시
   
   이처럼 자판키 뿐만 아니라 방향키나 숫자키로도 입력 받을 수 있다. ('Left', 'Right' 또는 '1', '4')
 
-2) Input.GetKeyDown()
+▶ Input.GetKeyDown()
 => 이 함수는 키보드가 눌러졌을 시에만 실행되는 함수이다. 
 사용방법은 위와 동일하다.
 
 # GetKey와 GetKeyDown의 차이점
 =>> GetKey함수는 키보드를 한번 누르게 되면 해당 값을 계속 받는 함수이지만, GetKeyDown 함수는 키보드가 한번 눌러진 그 순간만 값을 받는다.
 
-3) Input.GetKeyUp()
+▶ Input.GetKeyUp()
 => 2)와는 반대로 키보드를 눌렀다가 땠을때만 실행되는 함수이다.
   
   
 # 키를 입룍 받을 때는 (KeyCode.Space) 와 같이 KeyCode를 이용하여 불러주어도 괜찮다.
 
-4) anyKeyDown
+▶ anyKeyDown
 => 말 그대로 어떤 키를 입력해도 발생하는 함수이다.
 GetKeyDown과 같이 키를 누른 그 순간만 발생하며, 꾹 누르거나 손을 뗄 경우 발생하지 않는다.
 
